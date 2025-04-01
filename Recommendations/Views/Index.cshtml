@@ -1,0 +1,51 @@
+﻿@{
+    ViewData["Title"] = "Recommendation Page";
+}
+
+<h2>Recommendation System</h2>
+
+<form method="post" asp-action="GetRecommendations">
+    <div>
+        <label for="idType">Select ID Type:</label>
+        <select id="idType" name="idType">
+            <option value="user">UserID</option>
+            <option value="item">ItemID</option>
+        </select>
+    </div>
+
+    <div>
+        <label for="idValue">Enter UserID or ItemID:</label>
+        <input type="number" id="idValue" name="idValue" required />
+    </div>
+
+    <button type="submit">Get Recommendations</button>
+</form>
+
+@if (ViewData["Recommendations"] != null)
+{
+    var recommendations = (List<List<int>>)ViewData["Recommendations"];
+
+    <h3>Collaborative Filtering Recommendations</h3>
+    <ul>
+        @foreach (var item in recommendations[0])
+        {
+            <li>@item</li>
+        }
+    </ul>
+
+    <h3>Content-Based Filtering Recommendations</h3>
+    <ul>
+        @foreach (var item in recommendations[1])
+        {
+            <li>@item</li>
+        }
+    </ul>
+
+    <h3>Azure ML Recommendations</h3>
+    <ul>
+        @foreach (var item in recommendations[2])
+        {
+            <li>@item</li>
+        }
+    </ul>
+}
