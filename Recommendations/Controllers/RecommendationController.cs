@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using System.Net.Http;
+using System.Text;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 
@@ -10,6 +11,12 @@ public class RecommendationController : Controller
     public RecommendationController(HttpClient httpClient)
     {
         _httpClient = httpClient;
+    }
+    
+    [HttpGet]
+    public IActionResult Index()
+    {
+        return View();
     }
 
     [HttpPost]
@@ -50,25 +57,40 @@ public class RecommendationController : Controller
         return await Task.FromResult(new List<int> { 201, 202, 203, 204, 205 });
     }
 
-    private async Task<List<int>> GetAzureMLRecommendations(int idValue, string idType)
+    private async Task<List<int>> GetAzureMLRecommendations(int userId, string idType)
     {
-        // Call the Azure ML Endpoint (adjust endpoint and API key as needed)
-        var endpoint = "https://<your-azure-ml-endpoint>";
+        var endpoint = "https://<your-region>.inference.ml.azure.com/score"; // Your real URL
+        var apiKey = "<your-azure-api-key>"; // 🔒 Store this securely later!
+
+        var payload = new
+        {
+            Inputs = new
+            {
+                userId = userId // Change to match Azure’s expected schema
+            }
+        };
+
+        var json = JsonConvert.SerializeObject(payload);
         var request = new HttpRequestMessage
         {
             Method = HttpMethod.Post,
             RequestUri = new Uri(endpoint),
-            Content = new StringContent($"{{\"ID\":{idValue}}}", System.Text.Encoding.UTF8, "application/json")
+            Content = new StringContent(json, Encoding.UTF8, "application/json")
         };
 
-        // Add Azure API Key (use environment variables for security)
-        request.Headers.Add("Authorization", "Bearer <Your_Azure_ML_API_Key>");
+        request.Headers.Add("Authorization", $"Bearer {apiKey}");
 
         var response = await _httpClient.SendAsync(request);
-        response.EnsureSuccessStatusCode();
+        if (!response.IsSuccessStatusCode)
+        {
+            // Optional: log or handle error gracefully
+            return new List<int>();
+        }
 
         var responseString = await response.Content.ReadAsStringAsync();
-        var predictionData = JsonConvert.DeserializeObject<List<int>>(responseString); // assuming Azure returns a list of item IDs
+
+        // If Azure returns a JSON array like [1001, 1002, 1003, 1004, 1005]
+        var predictionData = JsonConvert.DeserializeObject<List<int>>(responseString);
 
         return predictionData ?? new List<int>();
     }

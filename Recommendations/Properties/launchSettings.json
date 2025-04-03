@@ -23,6 +23,7 @@
       "dotnetRunMessages": true,
       "launchBrowser": true,
       "applicationUrl": "https://localhost:7179;http://localhost:5079",
+      "launchUrl": "Recommendation",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       }

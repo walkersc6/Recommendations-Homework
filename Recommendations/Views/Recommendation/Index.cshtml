@@ -1,0 +1,54 @@
+﻿@{
+    ViewData["Title"] = "Get Recommendations";
+}
+
+<div class="container mt-4">
+    <h2>Recommendation Engine</h2>
+
+    <form method="post" asp-controller="Recommendation" asp-action="GetRecommendations" class="mt-3">
+        <div class="col-3 mb-3">
+            <label for="idValue" class="form-label">Enter User ID or Item ID</label>
+            <input type="number" class="form-control" id="idValue" name="idValue" required />
+        </div>
+
+        <button type="submit" class="btn btn-primary">Get Recommendations</button>
+    </form>
+
+    @if (ViewData["Recommendations"] != null)
+    {
+        var recs = (List<List<int>>)ViewData["Recommendations"];
+
+        <hr />
+        <h4 class="mt-4">Recommendations</h4>
+
+        <div class="row">
+            <div class="col">
+                <h5>Collaborative Filtering</h5>
+                <ul>
+                    @foreach (var item in recs[0])
+                    {
+                        <li>@item</li>
+                    }
+                </ul>
+            </div>
+            <div class="col">
+                <h5>Content Filtering</h5>
+                <ul>
+                    @foreach (var item in recs[1])
+                    {
+                        <li>@item</li>
+                    }
+                </ul>
+            </div>
+            <div class="col">
+                <h5>Azure ML</h5>
+                <ul>
+                    @foreach (var item in recs[2])
+                    {
+                        <li>@item</li>
+                    }
+                </ul>
+            </div>
+        </div>
+    }
+</div>
