@@ -35,7 +35,7 @@ public class RecommendationController : Controller
         //var azureMlRecommendations = await GetAzureMLRecommendations(idValue, idType);
 
         // Passing recommendations to ViewData
-        ViewData["Recommendations"] = new List<List<int>>
+        ViewData["Recommendations"] = new List<List<double>>
     {
         collaborativeRecommendations,
         //contentFilteringRecommendations,
@@ -77,7 +77,7 @@ public class RecommendationController : Controller
     //    return View("Index");
     //}
 
-    private async Task<List<int>> GetCollaborativeRecommendations(double idValue, string idType)
+    private async Task<List<double>> GetCollaborativeRecommendations(double idValue, string idType)
     {
         // Path to the CSV file in the App_Data folder
         string filePath = "App_Data/collaborative_filtering_results.csv";
@@ -104,21 +104,29 @@ public class RecommendationController : Controller
         // Check if a person was found, and pass to the view
         if (recs != null)
         {
-            return new List<int>
+            Console.WriteLine($"contentId: {recs.contentId}");
+            Console.WriteLine($"IfYouRead: {recs.IfYouRead}");
+            Console.WriteLine($"Recommendation1: {recs.Recommendation1}");
+            Console.WriteLine($"Recommendation2: {recs.Recommendation2}");
+            Console.WriteLine($"Recommendation3: {recs.Recommendation3}");
+            Console.WriteLine($"Recommendation4: {recs.Recommendation4}");
+            Console.WriteLine($"Recommendation5: {recs.Recommendation5}");
+            var collabRec = new List<double>
             {
-                (int)recs.contentId,
-                (int)recs.IfYouRead,
-                (int)recs.Recommendation1,
-                (int)recs.Recommendation2,
-                (int)recs.Recommendation3,
-                (int)recs.Recommendation4,
-                (int)recs.Recommendation5
+                recs.contentId,
+                recs.IfYouRead,
+                recs.Recommendation1,
+                recs.Recommendation2,
+                recs.Recommendation3,
+                recs.Recommendation4,
+                recs.Recommendation5
             };
+            return collabRec;
         }
         else
         {
             ViewBag.Message = "Person not found!";
-            return new List<int>();  // Return an empty list if not found
+            return new List<double>();  // Return an empty list if not found
         }
     }
 
