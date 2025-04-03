@@ -32,7 +32,7 @@ public class RecommendationController : Controller
         // Assume GetCollaborativeRecommendations is defined elsewhere in the controller
         var collaborativeRecommendations = await GetCollaborativeRecommendations(idValue, idType);
         //var contentFilteringRecommendations = await GetContentFilteringRecommendations(idValue, idType);
-        //var azureMlRecommendations = await GetAzureMLRecommendations(idValue, idType);
+        var azureMlRecommendations = await GetAzureMLRecommendations(idValue, idType);
         
 
         // Passing recommendations to ViewData
@@ -136,42 +136,56 @@ public class RecommendationController : Controller
     //    return await Task.FromResult(new List<int> { 201, 202, 203, 204, 205 });
     //}
 
-    //private async Task<List<int>> GetAzureMLRecommendations(int userId, string idType)
-    //{
-    //    var endpoint = "https://<your-region>.inference.ml.azure.com/score"; // Your real URL
-    //    var apiKey = "<your-azure-api-key>"; // 🔒 Store this securely later!
+    private async Task<List<double>> GetAzureMLRecommendations(double userId, string idType)
+    {
+        var endpoint = "http://6b93dc40-3d00-4af3-9032-b37193193822.eastus2.azurecontainer.io/score";
+        var apiKey = "Uxor2k9eMYkTwXMUastXvo4O2wUViMD1"; // 🔒 Store this securely later!
 
-    //    var payload = new
-    //    {
-    //        Inputs = new
-    //        {
-    //            userId = userId // Change to match Azure’s expected schema
-    //        }
-    //    };
+        var payload = new
+        {
+            Inputs = new
+            {
+                data = new[]
+                {
+                    new { userId = userId, idType = idType }
+                }
+            }
+        };
 
-    //    var json = JsonConvert.SerializeObject(payload);
-    //    var request = new HttpRequestMessage
-    //    {
-    //        Method = HttpMethod.Post,
-    //        RequestUri = new Uri(endpoint),
-    //        Content = new StringContent(json, Encoding.UTF8, "application/json")
-    //    };
+        var json = JsonConvert.SerializeObject(payload);
+        Console.WriteLine("Sending JSON payload:\n" + json); // Helpful for debugging
 
-    //    request.Headers.Add("Authorization", $"Bearer {apiKey}`);
+        var request = new HttpRequestMessage
+        {
+            Method = HttpMethod.Post,
+            RequestUri = new Uri(endpoint),
+            Content = new StringContent(json, Encoding.UTF8, "application/json")
+        };
 
-    //    var response = await _httpClient.SendAsync(request);
-    //    if (!response.IsSuccessStatusCode)
-    //    {
-    //        // Optional: log or handle error gracefully
-    //        return new List<int>();
-    //    }
+        request.Headers.Add("Authorization", $"Bearer {apiKey}");
 
-    //    var responseString = await response.Content.ReadAsStringAsync();
+        var response = await _httpClient.SendAsync(request);
+        if (!response.IsSuccessStatusCode)
+        {
+            var errorDetails = await response.Content.ReadAsStringAsync();
+            Console.WriteLine($"Request failed: {response.StatusCode}, details: {errorDetails}");
+            return new List<double>();
+        }
 
-    //    // If Azure returns a JSON array like [1001, 1002, 1003, 1004, 1005]
-    //    var predictionData = JsonConvert.DeserializeObject<List<int>>(responseString);
+        var responseString = await response.Content.ReadAsStringAsync();
+        Console.WriteLine("Azure response:\n" + responseString);
 
-    //    return predictionData ?? new List<int>();
-    //}
+        try
+        {
+            var predictionData = JsonConvert.DeserializeObject<List<double>>(responseString);
+            return predictionData ?? new List<double>();
+        }
+        catch (JsonException ex)
+        {
+            Console.WriteLine($"Deserialization error: {ex.Message}");
+            return new List<double>();
+        }
+    }
+
 }
 
