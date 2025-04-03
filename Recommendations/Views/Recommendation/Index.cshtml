@@ -17,10 +17,10 @@
     @if (ViewData["Recommendations"] != null)
     {
         // Try to safely cast the recommendations list
-        var recs = ViewData["Recommendations"] as List<List<int>>;
+        var recs = ViewData["Recommendations"] as List<List<double>>;
 
         // If recs is not null and it has at least 3 items
-        if (recs != null && recs.Count == 3)
+        if (recs != null && recs.Count > 0)
         {
             <hr />
             <h4 class="mt-4">Recommendations</h4>
