@@ -2,6 +2,19 @@
   "version": 3,
   "targets": {
     "net8.0": {
+      "CsvHelper/33.0.1": {
+        "type": "package",
+        "compile": {
+          "lib/net8.0/CsvHelper.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net8.0/CsvHelper.dll": {
+            "related": ".xml"
+          }
+        }
+      },
       "Newtonsoft.Json/13.0.3": {
         "type": "package",
         "compile": {
@@ -14,10 +27,54 @@
             "related": ".xml"
           }
         }
+      },
+      "Newtonsoft.Json.Bson/1.0.3": {
+        "type": "package",
+        "dependencies": {
+          "Newtonsoft.Json": "13.0.1"
+        },
+        "compile": {
+          "lib/netstandard2.0/Newtonsoft.Json.Bson.dll": {
+            "related": ".pdb;.xml"
+          }
+        },
+        "runtime": {
+          "lib/netstandard2.0/Newtonsoft.Json.Bson.dll": {
+            "related": ".pdb;.xml"
+          }
+        }
       }
     }
   },
   "libraries": {
+    "CsvHelper/33.0.1": {
+      "sha512": "fev4lynklAU2A9GVMLtwarkwaanjSYB4wUqO2nOJX5hnzObORzUqVLe+bDYCUyIIRQM4o5Bsq3CcyJR89iMmEQ==",
+      "type": "package",
+      "path": "csvhelper/33.0.1",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "Icon.png",
+        "csvhelper.33.0.1.nupkg.sha512",
+        "csvhelper.nuspec",
+        "lib/net462/CsvHelper.dll",
+        "lib/net462/CsvHelper.xml",
+        "lib/net47/CsvHelper.dll",
+        "lib/net47/CsvHelper.xml",
+        "lib/net48/CsvHelper.dll",
+        "lib/net48/CsvHelper.xml",
+        "lib/net6.0/CsvHelper.dll",
+        "lib/net6.0/CsvHelper.xml",
+        "lib/net7.0/CsvHelper.dll",
+        "lib/net7.0/CsvHelper.xml",
+        "lib/net8.0/CsvHelper.dll",
+        "lib/net8.0/CsvHelper.xml",
+        "lib/netstandard2.0/CsvHelper.dll",
+        "lib/netstandard2.0/CsvHelper.xml",
+        "lib/netstandard2.1/CsvHelper.dll",
+        "lib/netstandard2.1/CsvHelper.xml"
+      ]
+    },
     "Newtonsoft.Json/13.0.3": {
       "sha512": "HrC5BXdl00IP9zeV+0Z848QWPAoCr9P3bDEZguI+gkLcBKAOxix/tLEAAHC+UvDNPv4a2d18lOReHMOagPa+zQ==",
       "type": "package",
@@ -47,32 +104,64 @@
         "newtonsoft.json.nuspec",
         "packageIcon.png"
       ]
+    },
+    "Newtonsoft.Json.Bson/1.0.3": {
+      "sha512": "bCcwagnHfYnhwQfY1criEcn6Hy9PtBuVnZu0pA8hmRhuR3jI/8WxVgoVAdNw9BJ3JHkxmWJzpj/AQy+PMMLqxg==",
+      "type": "package",
+      "path": "newtonsoft.json.bson/1.0.3",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "LICENSE.md",
+        "lib/net45/Newtonsoft.Json.Bson.dll",
+        "lib/net45/Newtonsoft.Json.Bson.pdb",
+        "lib/net45/Newtonsoft.Json.Bson.xml",
+        "lib/netstandard1.3/Newtonsoft.Json.Bson.dll",
+        "lib/netstandard1.3/Newtonsoft.Json.Bson.pdb",
+        "lib/netstandard1.3/Newtonsoft.Json.Bson.xml",
+        "lib/netstandard2.0/Newtonsoft.Json.Bson.dll",
+        "lib/netstandard2.0/Newtonsoft.Json.Bson.pdb",
+        "lib/netstandard2.0/Newtonsoft.Json.Bson.xml",
+        "newtonsoft.json.bson.1.0.3.nupkg.sha512",
+        "newtonsoft.json.bson.nuspec",
+        "packageIcon.png"
+      ]
     }
   },
   "projectFileDependencyGroups": {
     "net8.0": [
-      "Newtonsoft.Json >= 13.0.3"
+      "CsvHelper >= 33.0.1",
+      "Newtonsoft.Json >= 13.0.3",
+      "Newtonsoft.Json.Bson >= 1.0.3"
     ]
   },
   "packageFolders": {
-    "/Users/test/.nuget/packages/": {}
+    "C:\\Users\\sarah\\.nuget\\packages\\": {},
+    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Users/test/RiderProjects/Recommendations/Recommendations-Homework/Recommendations/Recommendations.csproj",
+      "projectUniqueName": "C:\\Users\\sarah\\Documents\\Winter 2025\\IS 455\\Recommendations Project\\Recommendations\\Recommendations.csproj",
       "projectName": "Recommendations",
-      "projectPath": "/Users/test/RiderProjects/Recommendations/Recommendations-Homework/Recommendations/Recommendations.csproj",
-      "packagesPath": "/Users/test/.nuget/packages/",
-      "outputPath": "/Users/test/RiderProjects/Recommendations/Recommendations-Homework/Recommendations/obj/",
+      "projectPath": "C:\\Users\\sarah\\Documents\\Winter 2025\\IS 455\\Recommendations Project\\Recommendations\\Recommendations.csproj",
+      "packagesPath": "C:\\Users\\sarah\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\sarah\\Documents\\Winter 2025\\IS 455\\Recommendations Project\\Recommendations\\obj\\",
       "projectStyle": "PackageReference",
+      "fallbackFolders": [
+        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+      ],
       "configFilePaths": [
-        "/Users/test/.nuget/NuGet/NuGet.Config"
+        "C:\\Users\\sarah\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
         "net8.0"
       ],
       "sources": {
+        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+        "C:\\Program Files\\dotnet\\library-packs": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -89,17 +178,25 @@
       "restoreAuditProperties": {
         "enableAudit": "true",
         "auditLevel": "low",
-        "auditMode": "all"
+        "auditMode": "direct"
       },
-      "SdkAnalysisLevel": "9.0.100"
+      "SdkAnalysisLevel": "9.0.200"
     },
     "frameworks": {
       "net8.0": {
         "targetAlias": "net8.0",
         "dependencies": {
+          "CsvHelper": {
+            "target": "Package",
+            "version": "[33.0.1, )"
+          },
           "Newtonsoft.Json": {
             "target": "Package",
             "version": "[13.0.3, )"
+          },
+          "Newtonsoft.Json.Bson": {
+            "target": "Package",
+            "version": "[1.0.3, )"
           }
         },
         "imports": [
@@ -121,7 +218,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "/Users/test/.dotnet/sdk/9.0.100/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.201/PortableRuntimeIdentifierGraph.json"
       }
     }
   }

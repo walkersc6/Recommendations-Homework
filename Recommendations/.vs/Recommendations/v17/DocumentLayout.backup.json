@@ -1,7 +1,36 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\sarah\\Documents\\Winter 2025\\IS 455\\Ch 23\\Recommendations\\",
-  "Documents": [],
+  "WorkspaceRootPath": "C:\\Users\\sarah\\Documents\\Winter 2025\\IS 455\\Recommendations Project\\Recommendations\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{59D66745-4680-4EBC-A25B-2BCD83420E67}|Recommendations.csproj|c:\\users\\sarah\\documents\\winter 2025\\is 455\\recommendations project\\recommendations\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{59D66745-4680-4EBC-A25B-2BCD83420E67}|Recommendations.csproj|solutionrelative:appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{59D66745-4680-4EBC-A25B-2BCD83420E67}|Recommendations.csproj|c:\\users\\sarah\\documents\\winter 2025\\is 455\\recommendations project\\recommendations\\models\\collab.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{59D66745-4680-4EBC-A25B-2BCD83420E67}|Recommendations.csproj|solutionrelative:models\\collab.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{59D66745-4680-4EBC-A25B-2BCD83420E67}|Recommendations.csproj|c:\\users\\sarah\\documents\\winter 2025\\is 455\\recommendations project\\recommendations\\controllers\\recommendationcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{59D66745-4680-4EBC-A25B-2BCD83420E67}|Recommendations.csproj|solutionrelative:controllers\\recommendationcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{59D66745-4680-4EBC-A25B-2BCD83420E67}|Recommendations.csproj|c:\\users\\sarah\\documents\\winter 2025\\is 455\\recommendations project\\recommendations\\views\\recommendation\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{59D66745-4680-4EBC-A25B-2BCD83420E67}|Recommendations.csproj|solutionrelative:views\\recommendation\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{59D66745-4680-4EBC-A25B-2BCD83420E67}|Recommendations.csproj|c:\\users\\sarah\\documents\\winter 2025\\is 455\\recommendations project\\recommendations\\models\\collabmap.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{59D66745-4680-4EBC-A25B-2BCD83420E67}|Recommendations.csproj|solutionrelative:models\\collabmap.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{59D66745-4680-4EBC-A25B-2BCD83420E67}|Recommendations.csproj|c:\\users\\sarah\\documents\\winter 2025\\is 455\\recommendations project\\recommendations\\views\\recommendation\\showrecs.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{59D66745-4680-4EBC-A25B-2BCD83420E67}|Recommendations.csproj|solutionrelative:views\\recommendation\\showrecs.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{59D66745-4680-4EBC-A25B-2BCD83420E67}|Recommendations.csproj|c:\\users\\sarah\\documents\\winter 2025\\is 455\\recommendations project\\recommendations\\recommendations.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{59D66745-4680-4EBC-A25B-2BCD83420E67}|Recommendations.csproj|solutionrelative:recommendations.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    }
+  ],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
@@ -9,11 +38,103 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": -1,
+          "SelectedChildIndex": 1,
           "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Collab.cs",
+              "DocumentMoniker": "C:\\Users\\sarah\\Documents\\Winter 2025\\IS 455\\Recommendations Project\\Recommendations\\Models\\Collab.cs",
+              "RelativeDocumentMoniker": "Models\\Collab.cs",
+              "ToolTip": "C:\\Users\\sarah\\Documents\\Winter 2025\\IS 455\\Recommendations Project\\Recommendations\\Models\\Collab.cs",
+              "RelativeToolTip": "Models\\Collab.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAAXAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-03T16:38:15.069Z",
+              "IsPinned": true,
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "appsettings.json",
+              "DocumentMoniker": "C:\\Users\\sarah\\Documents\\Winter 2025\\IS 455\\Recommendations Project\\Recommendations\\appsettings.json",
+              "RelativeDocumentMoniker": "appsettings.json",
+              "ToolTip": "C:\\Users\\sarah\\Documents\\Winter 2025\\IS 455\\Recommendations Project\\Recommendations\\appsettings.json",
+              "RelativeToolTip": "appsettings.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAIAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2025-04-03T21:50:37.667Z",
+              "EditorCaption": ""
+            },
             {
               "$type": "Bookmark",
               "Name": "ST:128:0:{75188d03-9892-4ae2-abf1-207126247ce5}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "RecommendationController.cs",
+              "DocumentMoniker": "C:\\Users\\sarah\\Documents\\Winter 2025\\IS 455\\Recommendations Project\\Recommendations\\Controllers\\RecommendationController.cs",
+              "RelativeDocumentMoniker": "Controllers\\RecommendationController.cs",
+              "ToolTip": "C:\\Users\\sarah\\Documents\\Winter 2025\\IS 455\\Recommendations Project\\Recommendations\\Controllers\\RecommendationController.cs",
+              "RelativeToolTip": "Controllers\\RecommendationController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAACUAAAA5AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-03T00:10:40.347Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "C:\\Users\\sarah\\Documents\\Winter 2025\\IS 455\\Recommendations Project\\Recommendations\\Views\\Recommendation\\Index.cshtml",
+              "RelativeDocumentMoniker": "Views\\Recommendation\\Index.cshtml",
+              "ToolTip": "C:\\Users\\sarah\\Documents\\Winter 2025\\IS 455\\Recommendations Project\\Recommendations\\Views\\Recommendation\\Index.cshtml",
+              "RelativeToolTip": "Views\\Recommendation\\Index.cshtml",
+              "ViewState": "AgIAABgAAAAAAAAAAAAAAFEAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-04-03T16:41:57.02Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "CollabMap.cs",
+              "DocumentMoniker": "C:\\Users\\sarah\\Documents\\Winter 2025\\IS 455\\Recommendations Project\\Recommendations\\Models\\CollabMap.cs",
+              "RelativeDocumentMoniker": "Models\\CollabMap.cs",
+              "ToolTip": "C:\\Users\\sarah\\Documents\\Winter 2025\\IS 455\\Recommendations Project\\Recommendations\\Models\\CollabMap.cs",
+              "RelativeToolTip": "Models\\CollabMap.cs",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAwwAsAAABIAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-03T18:56:02.118Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "ShowRecs.cshtml",
+              "DocumentMoniker": "C:\\Users\\sarah\\Documents\\Winter 2025\\IS 455\\Recommendations Project\\Recommendations\\Views\\Recommendation\\ShowRecs.cshtml",
+              "RelativeDocumentMoniker": "Views\\Recommendation\\ShowRecs.cshtml",
+              "ToolTip": "C:\\Users\\sarah\\Documents\\Winter 2025\\IS 455\\Recommendations Project\\Recommendations\\Views\\Recommendation\\ShowRecs.cshtml",
+              "RelativeToolTip": "Views\\Recommendation\\ShowRecs.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAAHAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-04-03T17:41:59.178Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "Recommendations.csproj",
+              "DocumentMoniker": "C:\\Users\\sarah\\Documents\\Winter 2025\\IS 455\\Recommendations Project\\Recommendations\\Recommendations.csproj",
+              "RelativeDocumentMoniker": "Recommendations.csproj",
+              "ToolTip": "C:\\Users\\sarah\\Documents\\Winter 2025\\IS 455\\Recommendations Project\\Recommendations\\Recommendations.csproj",
+              "RelativeToolTip": "Recommendations.csproj",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAARAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2025-04-03T00:16:02.782Z",
+              "EditorCaption": ""
             }
           ]
         }
