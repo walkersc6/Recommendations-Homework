@@ -33,13 +33,14 @@ public class RecommendationController : Controller
         var collaborativeRecommendations = await GetCollaborativeRecommendations(idValue, idType);
         //var contentFilteringRecommendations = await GetContentFilteringRecommendations(idValue, idType);
         //var azureMlRecommendations = await GetAzureMLRecommendations(idValue, idType);
+        
 
         // Passing recommendations to ViewData
         ViewData["Recommendations"] = new List<List<double>>
     {
         collaborativeRecommendations,
-        //contentFilteringRecommendations,
-        //azureMlRecommendations
+        new List<double>(), // placeholder for content filtering
+        new List<double>()  // placeholder for Azure ML
     };
 
         return View("Index");
@@ -113,8 +114,6 @@ public class RecommendationController : Controller
             Console.WriteLine($"Recommendation5: {recs.Recommendation5}");
             var collabRec = new List<double>
             {
-                recs.contentId,
-                recs.IfYouRead,
                 recs.Recommendation1,
                 recs.Recommendation2,
                 recs.Recommendation3,

@@ -7,7 +7,7 @@
 
     <form method="post" asp-controller="Recommendation" asp-action="GetRecommendations" class="mt-3">
         <div class="col-3 mb-3">
-            <label for="idValue" class="form-label">Enter User ID or Item ID</label>
+            <label for="idValue" class="form-label">Enter Item ID</label>
             <input type="number" class="form-control" id="idValue" name="idValue" required />
         </div>
 
@@ -17,63 +17,71 @@
     @if (ViewData["Recommendations"] != null)
     {
         // Try to safely cast the recommendations list
-        var recs = ViewData["Recommendations"] as List<List<int>>;
+        var recs = ViewData["Recommendations"] as List<List<double>>;
 
         // If recs is not null and it has at least 3 items
-        if (recs != null && recs.Count == 3)
+        @if (recs != null && recs.Count > 0)
         {
             <hr />
             <h4 class="mt-4">Recommendations</h4>
-
             <div class="row">
-                <div class="col">
-                    <h5>Collaborative Filtering</h5>
-                    @if (recs[0].Any())
-                    {
-                        <ul>
-                            @foreach (var item in recs[0])
-                            {
-                                <li>@item</li>
-                            }
-                        </ul>
-                    }
-                    else
-                    {
-                        <p>No recommendations available for Collaborative Filtering.</p>
-                    }
-                </div>
-                <div class="col">
-                    <h5>Content Filtering</h5>
-                    @if (recs[1].Any())
-                    {
-                        <ul>
-                            @foreach (var item in recs[1])
-                            {
-                                <li>@item</li>
-                            }
-                        </ul>
-                    }
-                    else
-                    {
-                        <p>No recommendations available for Content Filtering.</p>
-                    }
-                </div>
-                <div class="col">
-                    <h5>Azure ML</h5>
-                    @if (recs[2].Any())
-                    {
-                        <ul>
-                            @foreach (var item in recs[2])
-                            {
-                                <li>@item</li>
-                            }
-                        </ul>
-                    }
-                    else
-                    {
-                        <p>No recommendations available for Azure ML.</p>
-                    }
-                </div>
+                @if (recs.Count > 0)
+                {
+                    <div class="col">
+                        <h5>Collaborative Filtering</h5>
+                        @if (recs[0].Any())
+                        {
+                            <ul>
+                                @foreach (var item in recs[0])
+                                {
+                                    <li>@item</li>
+                                }
+                            </ul>
+                        }
+                        else
+                        {
+                            <p>No recommendations available for Collaborative Filtering.</p>
+                        }
+                    </div>
+                }
+                @if (recs.Count > 1)
+                {
+                    <div class="col">
+                        <h5>Content Filtering</h5>
+                        @if (recs[1].Any())
+                        {
+                            <ul>
+                                @foreach (var item in recs[1])
+                                {
+                                    <li>@item</li>
+                                }
+                            </ul>
+                        }
+                        else
+                        {
+                            <p>No recommendations available for Content Filtering.</p>
+                        }
+                    </div>
+                }
+                @if (recs.Count > 2)
+                {
+                    <div class="col">
+                        <h5>Azure ML</h5>
+                        @if (recs[2].Any())
+                        {
+                            <ul>
+                                @foreach (var item in recs[2])
+                                {
+                                    <li>@item</li>
+                                }
+                            </ul>
+                        }
+                        else
+                        {
+                            <p>No recommendations available for Azure ML.</p>
+                        }
+                    </div>
+                }
             </div>
         }
         else
