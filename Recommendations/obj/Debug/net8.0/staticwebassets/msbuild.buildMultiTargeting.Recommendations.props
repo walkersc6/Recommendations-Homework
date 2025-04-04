@@ -1,3 +1,3 @@
 ﻿<Project>
-  <Import Project="../build/Recommendations.props" />
+  <Import Project="..\build\Recommendations.props" />
 </Project>
