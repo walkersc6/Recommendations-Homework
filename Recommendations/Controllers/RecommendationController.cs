@@ -32,6 +32,7 @@ public class RecommendationController : Controller
         return View();
     }
 
+    // drop down ids
     private async Task<List<decimal>> GetContentIdsFromCsvs()
     {
         string filePath1 = "App_Data/collaborative_filtering_results.csv"; // Path to your first CSV file
@@ -82,59 +83,6 @@ public class RecommendationController : Controller
         return contentIds.Distinct().ToList(); // Removing duplicates if any
     }
 
-    //private async Task<List<double>> GetContentIdsFromCsvs()
-    //{
-    //    string filePath1 = "App_Data/collaborative_filtering_results.csv"; // Path to your first CSV file
-    //    string filePath2 = "App_Data/content_filtering_results.csv"; // Path to your second CSV file
-
-    //    List<double> contentIds = new List<double>();
-
-    //    // Read the first CSV file
-    //    using (var reader1 = new StreamReader(filePath1))
-    //    using (var csv1 = new CsvReader(reader1, new CsvConfiguration(CultureInfo.InvariantCulture)
-    //    {
-    //        Delimiter = ",",
-    //        HeaderValidated = null,
-    //        MissingFieldFound = null
-    //    }))
-    //    {
-    //        var records1 = csv1.GetRecords<dynamic>().ToList();
-    //        foreach (var record in records1)
-    //        {
-    //            double contentId;
-    //            // Access contentId directly using the dynamic property
-    //            Console.WriteLine(record.contentId);
-    //            if (double.TryParse(record.contentId.ToString(), out contentId))
-    //            {
-    //                contentIds.Add(contentId);
-    //            }
-    //        }
-    //    }
-
-    //    // Read the second CSV file
-    //    using (var reader2 = new StreamReader(filePath2))
-    //    using (var csv2 = new CsvReader(reader2, new CsvConfiguration(CultureInfo.InvariantCulture)
-    //    {
-    //        Delimiter = ",",
-    //        HeaderValidated = null,
-    //        MissingFieldFound = null
-    //    }))
-    //    {
-    //        var records2 = csv2.GetRecords<dynamic>().ToList();
-    //        foreach (var record in records2)
-    //        {
-    //            double contentId;
-    //            // Access contentId directly using the dynamic property
-    //            if (double.TryParse(record.contentId.ToString(), out contentId))
-    //            {
-    //                contentIds.Add(contentId);
-    //            }
-    //        }
-    //    }
-
-    //    return contentIds.Distinct().ToList(); // Removing duplicates if any
-    //}
-
 
     [HttpPost]
     public async Task<IActionResult> GetRecommendations(double idValue, string idType)
@@ -142,7 +90,7 @@ public class RecommendationController : Controller
         // Assume GetCollaborativeRecommendations is defined elsewhere in the controller
         var collaborativeRecommendations = await GetCollaborativeRecommendations(idValue, idType);
         var contentFilteringRecommendations = await GetContentRecommendations(idValue, idType);
-        var azureMlRecommendations = await GetAzureMLRecommendations(idValue, idType);
+        //var azureMlRecommendations = await GetAzureMLRecommendations(idValue, idType);
 
         //get the list of contentId
         var contentIds = await GetContentIdsFromCsvs();
@@ -159,46 +107,58 @@ public class RecommendationController : Controller
         formattedAzureMlRecommendations
     };
 
-        //    // Passing recommendations to ViewData
-        //    ViewData["Recommendations"] = new List<List<double>>
-        //{
-        //    collaborativeRecommendations,
-        //    contentFilteringRecommendations, // placeholder for content filtering
-        //    new List<double>()  // placeholder for Azure ML
-        //};
 
-        // Pass the contentIds for the dropdown in the view
         ViewData["ContentIds"] = contentIds;
 
         return View("Index");
     }
 
+    private async Task<List<double>> GetContentRecommendations(double idValue, string idType)
+    {
+        string filePath = "App_Data/content_filtering_results.csv";
 
-    //[HttpPost]
-    //public async Task<IActionResult> GetRecommendations(int idValue, string idType)
-    //{
+        Content recs = null;
 
-    //    // Lists to store recommended item IDs
-    //    List<List<int>> recommendations = new List<List<int>>();
+        using (var reader = new StreamReader(filePath))
+        using (var csv = new CsvReader(reader, new CsvConfiguration(CultureInfo.InvariantCulture)
+        {
+            Delimiter = ",",         // Specify tab as the delimiter
+            HeaderValidated = null,   // Disable header validation (if headers are messy)
+            MissingFieldFound = null, // If fields are missing, we won't throw errors
+            //TrimOptions = TrimOptions.Trim, // Automatically trim fields (values)
+        }))
+        {
+            // Register the class map for the Content class
+            csv.Context.RegisterClassMap<ContentMap>();
+            var records = csv.GetRecords<Content>().ToList();
+            recs = records.FirstOrDefault(p => p.contentId == idValue);
+        }
 
-    //    // Get recommendations from Collaborative Filtering (Python)
-    //    var collaborativeRecommendations = await GetCollaborativeRecommendations(idValue, idType);
-    //    recommendations.Add(collaborativeRecommendations);
-
-    //    // Get recommendations from Content Filtering (Python)
-    //    var contentRecommendations = await GetContentRecommendations(idValue, idType);
-    //    recommendations.Add(contentRecommendations);
-
-    //    // Get recommendations from Azure ML
-    //    //var azureRecommendations = await GetAzureMLRecommendations(idValue, idType);
-    //    //recommendations.Add(azureRecommendations);
-
-    //    // Pass recommendations to View
-    //    ViewData["Recommendations"] = recommendations;
-
-
-    //    return View("Index");
-    //}
+        // Check if a person was found, and pass to the view
+        if (recs != null)
+        {
+            Console.WriteLine($"contentId: {recs.contentId}");
+            Console.WriteLine($"Top1: {recs.Top1}");
+            Console.WriteLine($"Top2: {recs.Top2}");
+            Console.WriteLine($"Top3: {recs.Top3}");
+            Console.WriteLine($"Top4: {recs.Top4}");
+            Console.WriteLine($"Top5: {recs.Top5}");
+            var contentRec = new List<double>
+            {
+                recs.Top1,
+                recs.Top2,
+                recs.Top3,
+                recs.Top4,
+                recs.Top5
+            };
+            return contentRec;
+        }
+        else
+        {
+            ViewBag.Message = "Person not found!";
+            return new List<double>();  // Return an empty list if not found
+        }
+    }
 
     private async Task<List<double>> GetCollaborativeRecommendations(double idValue, string idType)
     {
@@ -251,12 +211,6 @@ public class RecommendationController : Controller
         }
     }
 
-    //private async Task<List<int>> GetContentRecommendations(int idValue, string idType)
-    //{
-    //    // Simulate API call to Python-based content filtering model
-    //    // You can call an actual API here that serves content-based recommendations
-    //    return await Task.FromResult(new List<int> { 201, 202, 203, 204, 205 });
-    //}
 
     private async Task<List<double>> GetAzureMLRecommendations(double userId, string idType)
     {
@@ -310,4 +264,3 @@ public class RecommendationController : Controller
     }
 
 }
-
